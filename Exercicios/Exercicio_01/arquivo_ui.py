@@ -107,12 +107,3 @@ class Ui_MainWindow(object):
         self.Qline_Senha.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Digite sua senha:", None))
     # retranslateUi
 
-
-if __name__ == '__main__':
-    import sys
-    app = QApplication(sys.argv)
-    w = QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(w)
-    w.show()
-    app.exec()
