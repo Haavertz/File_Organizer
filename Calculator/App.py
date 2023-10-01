@@ -1,7 +1,7 @@
-from PySide6.QtWidgets import (QMainWindow, QHBoxLayout,
+from PySide6.QtWidgets import (QMainWindow, QTextBrowser,
 QVBoxLayout, QPushButton, QWidget, QFrame, QLabel, QLineEdit)
 from PySide6.QtGui import QColor, QFont, QIntValidator
-from Multiplicacao import Multiplicando
+from Addiction import Multiplicando, Somando, Subtrair, Dividindo
 
 
 class MainWindow(QMainWindow):
@@ -12,7 +12,7 @@ class MainWindow(QMainWindow):
 
     def InitialFunction(self):
         self.setWindowTitle("Calculator Program")
-        self.setFixedSize(450, 300)
+        self.setFixedSize(500, 350)
 
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
@@ -22,6 +22,7 @@ class MainWindow(QMainWindow):
 
         self.frame = QFrame(self)
         self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setStyleSheet("border: 1px solid DarkMagenta;")
 
         self.qv_2 = QVBoxLayout(self.frame)
         
@@ -57,11 +58,15 @@ class MainWindow(QMainWindow):
         self.lbl_valor_Digitado.setFont(self.font1)
 
         self.btn_multiplicar.clicked.connect(self.ClickedButtonMultiplicar)
+        self.btn_somar.clicked.connect(self.ClickedButtonSomar)
+        self.btn_subtrair.clicked.connect(self.ClickedButtonSubtrair)
+        self.btn_dividir.clicked.connect(self.ClickedButtonDividir)
+
 
         self.frame_resultado_container.addWidget(self.lbl_valor_Digitado)
         self.frame_resultado_container.addSpacing(300)
         self.frame_resultado_container.addWidget(self.inp_result)
-
+        
         central_layout.addWidget(self.frame_resultado)
         central_layout.addWidget(self.frame)
         self.qv_2.addWidget(self.btn_somar)
@@ -70,29 +75,127 @@ class MainWindow(QMainWindow):
         self.qv_2.addWidget(self.btn_subtrair)
         self.qv_2.addWidget(self.btn_Calcular)
 
+
+########## Multiplicando ###########
+
     def ClickedButtonMultiplicar(self):
+
             self.list_values.append(self.inp_result.text())
-            self.value12 = self.inp_result.text()
-            self.lbl_valorantigo = QLabel(self.value12+" X", self)
+            self.value12 = int(self.inp_result.text())
+
+            self.lbl_valorantigo = QLabel(f"{self.value12}"+" X", self)
+
+            self.inp_result.clear()
+
             self.frame_resultado_container.addWidget(self.lbl_valorantigo)
             self.frame_resultado_container.addWidget(self.inp_result)
+            
+            print(self.list_values) #Print valor atuais na lista 
+
+            self.btn_Calcular.clicked.connect(self.ClickedButtonCalcularM)
+
+    def ClickedButtonCalcularM(self):
+        try:   
+            self.value2 = int(self.inp_result.text())
+        except:
+            pass
+
+        result_Multiplicacao = str(Multiplicando(self.value2, self.value12))
+        self.lbl_valorantigo.clear()
+        self.lbl_valorantigo.setText(result_Multiplicacao)
+        self.inp_result.clear()
+        self.list_values.clear()
+
+
+########## Somando ###########
+
+    def ClickedButtonSomar(self):
+
+            self.list_values.append(self.inp_result.text())
+            self.value10 = int(self.inp_result.text())
+
+            self.lbl_valorantigo = QLabel(f"{self.value10}"+" +", self)
+
             self.inp_result.clear()
-            print(self.list_values)
-            for i in (self.value12):
-                print(i)
-            self.btn_Calcular.clicked.connect(self.ClickedButtonCalcular)
 
-    def ClickedButtonCalcular(self):
-        pass        
+            self.frame_resultado_container.addWidget(self.lbl_valorantigo)
+            self.frame_resultado_container.addWidget(self.inp_result)
+            
+            print(self.list_values) #Print valor atuais na lista 
+
+            self.btn_Calcular.clicked.connect(self.ClickedButtonCalcularSomar)
+
+    def ClickedButtonCalcularSomar(self):
+        try:   
+            self.value2 = int(self.inp_result.text())
+        except:
+            pass
+
+        self.result_Somando = str(Somando(self.value2, self.value10))
+        self.lbl_valorantigo.clear()
+        self.lbl_valorantigo.setText(self.result_Somando)
+        self.inp_result.clear()
+        self.list_values.clear()
 
 
+########## Subtraindo ###########
+    
+    def ClickedButtonSubtrair(self):
+
+            self.list_values.append(self.inp_result.text())
+            self.value11 = int(self.inp_result.text())
+
+            self.lbl_valorantigo = QLabel(f"{self.value11}"+" -", self)
+
+            self.inp_result.clear()
+
+            self.frame_resultado_container.addWidget(self.lbl_valorantigo)
+            self.frame_resultado_container.addWidget(self.inp_result)
+            
+            print(self.list_values) #Print valor atuais na lista 
+
+            self.btn_Calcular.clicked.connect(self.ClickedButtonCalcularSubtrair)
+
+    def ClickedButtonCalcularSubtrair(self):
+        try:   
+            self.value2 = int(self.inp_result.text())
+        except:
+            pass
+
+        self.result_Somando = str(Subtrair(self.value2, self.value11))
+        self.lbl_valorantigo.clear()
+        self.lbl_valorantigo.setText(self.result_Somando)
+        self.inp_result.clear()
+        # self.lbl_valorantigo.clear()
 
 
+########## Dividindo ###########
 
+    def ClickedButtonDividir(self):
 
+            self.list_values.append(self.inp_result.text())
+            self.value7 = int(self.inp_result.text())
 
-        
+            self.lbl_valorantigo = QLabel(f"{self.value7}"+" /", self)
 
-        
-        
+            self.inp_result.clear()
+
+            self.frame_resultado_container.addWidget(self.lbl_valorantigo)
+            self.frame_resultado_container.addWidget(self.inp_result)
+            
+            print(self.list_values) #Print valor atuais na lista 
+
+            self.btn_Calcular.clicked.connect(self.ClickedButtonCalcularDividir)
+
+    def ClickedButtonCalcularDividir(self):
+        try:   
+            self.value2 = int(self.inp_result.text())
+        except:
+            pass
+
+        self.result_Somando = str(Dividindo(self.value2, self.value7))
+        self.lbl_valorantigo.clear()
+        self.lbl_valorantigo.setText(self.result_Somando)
+        self.inp_result.clear()
+        # self.lbl_valorantigo.clear()
 
