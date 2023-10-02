@@ -193,9 +193,23 @@ class MainWindow(QMainWindow):
         except:
             pass
 
+        self.TestingRequerimento()
         self.result_Somando = str(Dividindo(self.value2, self.value7))
         self.lbl_valorantigo.clear()
         self.lbl_valorantigo.setText(self.result_Somando)
         self.inp_result.clear()
         # self.lbl_valorantigo.clear()
 
+################################
+
+    def TestingRequerimento(self):
+        for i in self.inp_result.text():
+            for j in str(self.Requerimento):      
+                print(i)
+                print(type(j))
+                if i == j:
+                     pass
+
+    def Requerimento(self):
+        return ["X", "/", "+", "-"]
+          
