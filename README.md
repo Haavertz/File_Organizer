@@ -2,8 +2,6 @@
 
 A simple and efficient desktop application to organize your files by extension or type, built with Python and PySide6.
 
-![image](https://github.com/user-attachments/assets/eb394cdd-9dbb-4d11-b0ae-fb1afca0bc77)
-
 ---
 
 ## 🚀 Features
