@@ -10,7 +10,6 @@ A simple and efficient desktop application to organize your files by extension o
 - 🔍 Detects files in selected directories
 - 🎯 Clean and intuitive GUI built with PySide6 (Qt for Python)
 - 📦 Lightweight executable (.exe) ready for Windows
-- 💾 Supports drag-and-drop folder selection (optional, if implemented)
 
 ---
 
