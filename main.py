@@ -1,16 +1,16 @@
-import shutil  # Importa a biblioteca shutil para operações de arquivo.
-import sys     # Importa a biblioteca sys para manipulação de argumentos de linha de comando.
-import os      # Importa a biblioteca os para operações do sistema operacional.
-from PySide6.QtWidgets import *  # Importa as classes da biblioteca PySide6 para criar a GUI.
-from PySide6.QtGui import QIcon  # Importa a classe QIcon da biblioteca PySide6 para ícones.
-from teste_qt_ui import Ui_MainWindow  # Importa a classe Ui_MainWindow do arquivo ui_main.py.
+import shutil  
+import sys     
+import os      
+from PySide6.QtWidgets import *  
+from PySide6.QtGui import QIcon  
+from teste_qt_ui import Ui_MainWindow 
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.setWindowTitle("Organizador de Arquivos")
+        self.setWindowTitle("File Organizer")
         appIcon = QIcon("bulbasaur.jgp")
         self.setWindowIcon(appIcon)
         
@@ -18,29 +18,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pushButton.clicked.connect(self.organize)
         
     def open_path(self):
-        self.path = QFileDialog.getExistingDirectory(self, str('pasta com arquivos'), '/home', QFileDialog.ShowDirsOnly | 
+        self.path = QFileDialog.getExistingDirectory(self, str('folder with files'), '/home', QFileDialog.ShowDirsOnly | 
                                                     QFileDialog.DontResolveSymlinks)
         self.lineEdit.setText(self.path)
         self.path = str(self.path)
 
         
     def organize(self):
-        path = self.path  # Obtém o diretório selecionado.
-        files = os.listdir(path)  # Lista todos os arquivos no diretório.
+        path = self.path  
+        files = os.listdir(path)
 
         for file in files:
-            filename, extension = os.path.splitext(file)  # Divide o nome do arquivo e sua extensão.
-            extension = extension[1:]  # Remove o ponto da extensão.
+            filename, extension = os.path.splitext(file)  
+            extension = extension[1:]
             if os.path.exists(path + '/' + extension):
                 shutil.move(path + '/' + file, path + '/' + extension + '/' + file)
             else:
-                os.makedirs(path + '/' + extension)  # Cria um diretório para a extensão, se não existir.
+                os.makedirs(path + '/' + extension) 
                 shutil.move(path + '/' + file, path + '/' + extension + '/' + file)
 
-        msg = QMessageBox()  # Cria um diálogo de mensagem.
+        msg = QMessageBox() 
         msg.setIcon(QMessageBox.Information)
-        msg.setText('Arquivos Organizados')
-        msg.exec()  # Exibe o diálogo de mensagem.
+        msg.setText('Files Organized')
+        msg.exec()  
                 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

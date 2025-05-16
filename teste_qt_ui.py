@@ -99,10 +99,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label_2.setText("")
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Organizador de Arquivos", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Selecione a pasta", None))
-        self.btn_abrir.setText(QCoreApplication.translate("MainWindow", u"Abrir", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Organizar", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"File Organizer", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select the Folder", None))
+        self.btn_abrir.setText(QCoreApplication.translate("MainWindow", u"Open", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Organized", None))
     # retranslateUi
 
 if __name__ == '__main__':
