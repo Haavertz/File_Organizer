@@ -31,6 +31,12 @@ git clone https://github.com/Haavertz/File_Organizer.git
 cd File_Organizer
 ```
 
+Create a virtual environment (only if you want)
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
 Install dependencies:
 
 ```bash
